@@ -3,9 +3,8 @@ var path = require('path'),
     WebpackConfig = require('webpack-config').Config;
 
 module.exports = new WebpackConfig().merge({
-    context: path.join(__dirname, '../'),
     output: {
-        path: path.join(__dirname, '../dist/admin'),
+        path: path.join(__dirname, './dist/bundledCode'),
         filename: "bundle.js?[hash]" ,
         publicPath: '/'
     },
@@ -35,8 +34,7 @@ module.exports = new WebpackConfig().merge({
     },
     module: {
         loaders: [
-            { test: /\.(js|jsx)$/, exclude: /node_modules/, use:"babel-loader?compact=false" },
-            { test: /\.json$/, loaders: ["json-loader"] },
+            { test: /\.(js|jsx)$/, exclude: /node_modules/, use:"babel-loader?compact=false" }
         ]
     }
 });

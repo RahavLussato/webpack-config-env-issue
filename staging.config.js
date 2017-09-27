@@ -11,13 +11,19 @@ module.exports = new WebpackConfig().extend('./base.config.js').merge({
     },
     plugins: [
         new UglifyJSPlugin({
-            mangle: {
-                except: ['$super', '$', 'exports', 'require']
+            uglifyOptions: {
+                mangle: { properties: {reserved: ['$super', '$', 'exports', 'require'] }},
+                ecma: 8,
+                compress: { warnings: false },
+                output: {
+                    comments: false,
+                    beautify: false
+                }
             },
-            sourceMap: true,
-            compress: {
-                warnings: false
-            }
+            parallel: {
+                cache: true
+            },
+            sourceMap: true
         })
     ]
 });
